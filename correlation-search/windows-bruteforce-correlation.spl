@@ -1,0 +1,27 @@
+Name: Windows Brute Force - 4 Failed Logons
+
+Time Range:
+Earliest: -10m@m
+Latest: now
+
+Schedule:
+*/5 * * * *
+
+Scheduling:
+Continuous
+
+Trigger Condition:
+Number of Results > 0
+
+Trigger:
+Once
+
+Throttling:
+10 minutes
+
+Group By:
+host
+
+index=* host="<WINDOWS_HOST>" source="WinEventLog:Security" EventCode=4625
+| stats count as failed_logins by host
+| where failed_logins >= 4
