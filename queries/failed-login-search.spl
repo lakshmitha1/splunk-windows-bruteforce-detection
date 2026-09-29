@@ -1,0 +1,1 @@
+index=* host="<WINDOWS_HOST>" source="WinEventLog:Security" EventCode=4625
